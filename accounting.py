@@ -18,7 +18,8 @@ def incorrect_pay(file_name, melon_cost):
 
         word = line.split('|')
 
-        # separate out each word by the index to get the information we needc
+        # separate out each word by the index to get the information we need
+        # note for future Melissa can do it this way: order_num, full_name, emlon_qty, amt_paid = word
         seller_name = word[1]
         melons_sold = float(word[2])
         payment_rec = float(word[3])
