@@ -1,3 +1,4 @@
+# create a function that takes in the name of the file and the current price of melons
 def incorrect_pay(file_name, melon_cost):
     """Parameters are the file name and the current price of melons
     This function determines if the seller received the correct pay
@@ -5,28 +6,40 @@ def incorrect_pay(file_name, melon_cost):
     Looks at each line, breaks it up by the | symbol, figures out if the seller
     got paid the right amount.
     """
-
+    # open the file and assign it the variable
     the_file = open(file_name)
+
+    #create an empty list that will hold all the incorrect payment information
     incorrect_payments = []
 
+    # loop through the file, removing extra whitespace characters at the end and separating the line based on the | symbol
     for line in the_file:
         line = line.rstrip()
 
         word = line.split('|')
 
+        # separate out each word by the index to get the information we needc
         seller_name = word[1]
         melons_sold = float(word[2])
         payment_rec = float(word[3])
 
+        # calculate the correct payment they should have received based on sales and current melon price
         correct_pay = melon_cost * melons_sold
 
+        # if the corret pay is NOT what they received, add them to the incorrect payments list
         if payment_rec != correct_pay:
             incorrect_payments.append(f'{seller_name} was paid ${payment_rec:.2f}, expected ${correct_pay:.2f}.')
 
+    #close the file because we are done with it
     the_file.close()
+
+    #return the contents of the incorrect payments list, one line at a time
     return ("\n".join(incorrect_payments))
 
-print(incorrect_pay('customer-orders.txt', 1))
+# test the function to see if it works
+
+melon_cost = 1
+print(incorrect_pay('customer-orders.txt', melon_cost))
 
 
 ## Original Code
